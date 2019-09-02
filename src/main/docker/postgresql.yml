@@ -1,0 +1,9 @@
+version: '2'
+services:
+  test-sync2postgresql:
+    image: postgres:11.5
+    environment:
+      - POSTGRES_USER=test1
+      - POSTGRES_PASSWORD=test
+    ports:
+      - 5432:5432

@@ -1,7 +1,7 @@
 package com.eigenbaumarkt.synctwodatabases;
 
-import com.eigenbaumarkt.synctwodatabases.config.ProductConfig;
-import com.eigenbaumarkt.synctwodatabases.config.UserConfig;
+import com.eigenbaumarkt.synctwodatabases.config.PersistenceProductAutoConfiguration;
+import com.eigenbaumarkt.synctwodatabases.config.PersistenceUserAutoConfiguration;
 import com.eigenbaumarkt.synctwodatabases.dao.product.ProductRepository;
 import com.eigenbaumarkt.synctwodatabases.dao.user.UserRepository;
 import com.eigenbaumarkt.synctwodatabases.model.product.Product;
@@ -12,15 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {UserConfig.class, ProductConfig.class})
-@TransactionConfiguration
+@ContextConfiguration(classes = {PersistenceUserAutoConfiguration.class, PersistenceProductAutoConfiguration.class})
 public class JPAMultipleDBTest {
 
     @Autowired
