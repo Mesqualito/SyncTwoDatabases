@@ -6,6 +6,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,6 +18,7 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 
 @Configuration
+@PropertySource({"classpath:db.properties"})
 @EnableJpaRepositories(
         basePackages = "com.eigenbaumarkt.synctwodatabases.dao.user",
         entityManagerFactoryRef = "userEntityManager",
@@ -24,8 +26,11 @@ import java.util.HashMap;
 )
 public class PersistenceUserAutoConfiguration {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
+
+    public PersistenceUserAutoConfiguration(Environment env) {
+        this.env = env;
+    }
 
     @Primary
     @Bean
