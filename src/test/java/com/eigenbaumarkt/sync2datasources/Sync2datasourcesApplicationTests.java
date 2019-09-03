@@ -1,4 +1,4 @@
-package test.java.com.eigenbaumarkt.synctwodatabases;
+package com.eigenbaumarkt.sync2datasources;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SyncTwoDatabasesApplicationTests {
+public class Sync2datasourcesApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
 
 }
