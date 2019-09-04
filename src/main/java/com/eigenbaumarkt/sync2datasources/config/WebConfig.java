@@ -7,29 +7,30 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class WebConfig {
 
-    @Bean(name = "db1")
+    @Bean(name = "pg_db")
     @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource1() {
+    public DataSource dataSourcePg() {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "jdbcTemplate1")
-    public JdbcTemplate jdbcTemplate1(@Qualifier("db1") DataSource ds) {
+    @Bean(name = "jdbcTemplatePg")
+    public JdbcTemplate jdbcTemplatePg(@Qualifier("pg_db") DataSource ds) {
         return new JdbcTemplate(ds);
     }
 
-    @Bean(name = "db2")
-    @ConfigurationProperties(prefix = "spring.second-db")
-    public DataSource dataSource2() {
+    @Bean(name = "ms_db")
+    @ConfigurationProperties(prefix = "spring.second-datasource")
+    public DataSource dataSourceMs() {
         return  DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "jdbcTemplate2")
-    public JdbcTemplate jdbcTemplate2(@Qualifier("db2") DataSource ds) {
+    @Bean(name = "jdbcTemplateMs")
+    public JdbcTemplate jdbcTemplateMs(@Qualifier("ms_db") DataSource ds) {
         return new JdbcTemplate(ds);
     }
 }
